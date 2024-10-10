@@ -9,7 +9,7 @@ export default function App() {
   const [thanksNumber, setthanksNumber] = useState(0);
   const [submit, setSubmit] = useState(false);
 
-  const check = (e) => {
+  const check = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (checked === true) {
       setChecked(false);
       // alert('not checked!')
