@@ -8,6 +8,7 @@ export default function App() {
   const [number, setNumber] = useState(0);
   const [thanksNumber, setthanksNumber] = useState(0);
   const [submit, setSubmit] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const check = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (checked === true) {
@@ -28,14 +29,16 @@ export default function App() {
       setChecked(false);
       setSubmit(true);
     } else {
-      alert("please rate us first!");
+      // alert("please rate us first!");
       setSubmit(false);
+      setErrorMessage(true)
     }
   };
 
   const reset = () => {
     setNumber(0);
     setSubmit(false);
+    setErrorMessage(false)
   };
 
   return (
@@ -82,6 +85,34 @@ export default function App() {
             Thanks
           </button>
         </div>
+        {/* ${errorMessage ? "scaleBig" : "scaleHidden"} */}
+        <div
+          className={`
+        gradiant max-w-[380px]
+        py-8 px-14 min-h-[300px]
+        rounded-3xl
+        flex flex-col text-center items-center gap-4
+        transition-all
+        duration-500
+        m-auto
+        
+        absolute
+        ${errorMessage ? "scaleBig" : "scaleHidden"}
+        
+      `}
+        >
+          <Phone />
+          <h3 className="text-[#FC7614] bg-[#262E38] p-3 rounded-full text-[14px] mt-3">
+            Hi User!
+          </h3>
+          <h1 className="text-[#FFF] text-[24px] font-bold">please rate us first!</h1>
+          <button
+            onClick={reset}
+            className="w-full transition-all duration-500 bg-[#FC7614] mt-4 p-2 rounded-xl hover:bg-[#FFF] uppercase font-medium hover:-translate-y-1"
+          >
+            Ok
+          </button>
+        </div>
       </div>
 
       <div
@@ -93,6 +124,7 @@ export default function App() {
         transition-all
         duration-500
         ${submit ? "scaleHidden" : "scaleBig"}
+        ${errorMessage ? "scaleHidden" : "scaleBig"}
         `}
       >
         <div className=" transition-all duration-500 p-4 rounded-full bg-[#303a46] w-fit hover:cursor-pointer flipmain hover:bg-[#394654]">
